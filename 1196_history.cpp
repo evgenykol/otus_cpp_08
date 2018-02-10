@@ -11,7 +11,7 @@ int main()
 {
 
 #ifndef ONLINE_JUDGE
-   	freopen("1196.input.txt", "rt", stdin);
+   	freopen("1196_input.txt", "rt", stdin);
    	//freopen("h_output.txt", "wt", stdout);
 #endif
 
@@ -31,22 +31,15 @@ int main()
     }
 
     cin >> count;
-    students_list.reserve(count);
-    
+    auto matches_count = 0;   
+
     for (int i = 0; i < count; ++i)
     {
         value year = 0;
         cin >> year;
-        students_list.push_back(year);
+        matches_count += binary_search(teachers_list.begin(), teachers_list.end(), year);
     }
 
-    auto matches_count = 0;
-
-    for(auto s : students_list)
-    {
-        matches_count += binary_search(teachers_list.begin(), teachers_list.end(), s);
-    }
-
-    cout << endl << matches_count << endl;
+    cout << matches_count << endl;
     return 0;
 }
